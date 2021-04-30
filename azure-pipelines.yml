@@ -170,13 +170,13 @@ stages:
               path: $(Build.SourcesDirectory)/artifacts/packages/$(_BuildConfig)/Shipping/
 
           - script: eng/common/build.sh
-              --configuration $(_BuildConfig)
+              --configuration Debug
               --prepareMachine
               --ci
               --restore
               --test
               --projects $(Build.SourcesDirectory)/tests/integration-tests/Android/Android.Helix.SDK.Tests.proj
-              /bl:$(Build.SourcesDirectory)/artifacts/log/$(_BuildConfig)/Android.Helix.SDK.Tests.binlog
+              /bl:$(Build.SourcesDirectory)/artifacts/log/Debug/Android.Helix.SDK.Tests.binlog
               /p:RestoreUsingNuGetTargets=false
             displayName: Run Helix Tests on Linux
             condition: eq(variables['Agent.OS'], 'Linux')
@@ -185,13 +185,13 @@ stages:
               HelixAccessToken: ''
 
           - powershell: eng\common\build.ps1
-              --configuration $(_BuildConfig)
+              --configuration Debug
               --prepareMachine
               --ci
               --restore
               --test
               --projects $(Build.SourcesDirectory)\tests\integration-tests\Android\Android.Helix.SDK.Tests.proj
-              /bl:$(Build.SourcesDirectory)\artifacts\log\$(_BuildConfig)\Android.Helix.SDK.Tests.binlog
+              /bl:$(Build.SourcesDirectory)\artifacts\log\Debug\Android.Helix.SDK.Tests.binlog
               /p:RestoreUsingNuGetTargets=false
             displayName: Run Helix Tests on Windows (Physical Devices)
             condition: eq(variables['Agent.OS'], 'Windows_NT')
